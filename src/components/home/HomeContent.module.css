@@ -1,0 +1,143 @@
+.home {
+  display: grid;
+  gap: 32px;
+}
+
+.hero {
+  display: grid;
+  gap: 12px;
+  padding: 48px 0 16px;
+}
+
+.hero h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.hero p {
+  max-width: 640px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.section {
+  display: grid;
+  gap: 18px;
+}
+
+.section h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.35rem;
+}
+
+.tournamentList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tournamentItem {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.tournamentItem h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.1rem;
+}
+
+.tournamentItem dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.tournamentItem dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tournamentItem dt {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.tournamentItem dd {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.emptyState,
+.errorBox {
+  margin: 0;
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+.errorBox {
+  border-color: var(--color-danger);
+}
+
+.errorBox h2 {
+  margin: 0 0 8px;
+  color: var(--color-danger);
+  font-size: 1.125rem;
+}
+
+.errorBox p {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.heroTitleSkeleton {
+  width: min(620px, 100%);
+  height: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.heroTextSkeleton {
+  width: min(680px, 92%);
+  height: 1.35rem;
+  margin-top: 16px;
+}
+
+.sectionTitleSkeleton {
+  width: 260px;
+  height: 1.7rem;
+}
+
+.tournamentTitleSkeleton {
+  width: min(300px, 75%);
+  height: 1.3rem;
+}
+
+.tournamentLabelSkeleton {
+  width: 64px;
+  height: 0.875rem;
+}
+
+.tournamentValueSkeleton {
+  width: 110px;
+  height: 0.875rem;
+}

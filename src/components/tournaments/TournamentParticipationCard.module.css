@@ -1,0 +1,404 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  padding: 22px;
+}
+
+.card::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  content: "";
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.header p:not(.eyebrow),
+.muted {
+  margin: 8px 0 0;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.primaryLink,
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  cursor: pointer;
+  font-weight: 900;
+  padding: 0 16px;
+}
+
+.primaryLink:hover,
+.primaryButton:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  color: var(--color-surface);
+}
+
+.primaryButton {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.primaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.option {
+  min-height: 132px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-bg) 72%, var(--color-surface));
+  color: var(--color-muted);
+  cursor: pointer;
+  padding: 14px;
+  text-align: left;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.option:hover,
+.selected {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+.selected {
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  color: var(--color-text);
+}
+
+.optionTitle {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.statusBox {
+  border: 1px solid color-mix(in srgb, var(--color-primary) 42%, var(--color-border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-primary) 9%, transparent);
+  padding: 16px;
+}
+
+.statusBox h3 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
+.statusBox dl {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 12px;
+}
+
+.statusBox div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.statusBox dt {
+  color: var(--color-muted);
+  font-weight: 800;
+}
+
+.statusBox dd {
+  margin: 0;
+  font-weight: 900;
+}
+
+.statusBox p {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.joinedBox {
+  display: grid;
+  gap: 14px;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.freeBox {
+  border: 1px solid var(--color-success);
+  background: var(--color-success-bg);
+}
+
+.paidConfirmedBox {
+  border: 1px solid var(--color-success);
+  background: color-mix(in srgb, var(--color-success-bg) 78%, var(--color-surface));
+}
+
+.paidBox {
+  border: 1px solid color-mix(in srgb, var(--color-accent) 70%, var(--color-border));
+  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
+}
+
+.joinedHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.joinedHeader h3 {
+  margin: 0 0 6px;
+  font-size: 1.08rem;
+}
+
+.joinedBox p {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+.freeIcon,
+.paidIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.freeIcon {
+  background: var(--color-success);
+  color: var(--color-surface);
+}
+
+.paidIcon {
+  background: var(--color-accent);
+  color: #111827;
+}
+
+.typeBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.freeBadge {
+  background: color-mix(in srgb, var(--color-success) 18%, var(--color-surface));
+  color: var(--color-success);
+}
+
+.paidBadge {
+  background: color-mix(in srgb, var(--color-accent) 22%, var(--color-surface));
+  color: var(--color-text);
+}
+
+.minimum {
+  font-weight: 900;
+}
+
+.pendingNote {
+  border: 1px solid color-mix(in srgb, var(--color-accent) 58%, var(--color-border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  padding: 12px 14px;
+  font-weight: 800;
+}
+
+.warning {
+  border: 1px solid color-mix(in srgb, var(--color-danger) 55%, var(--color-border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  color: var(--color-danger);
+  padding: 12px 14px;
+  line-height: 1.5;
+}
+
+.statusList {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.statusList div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.statusList dt {
+  color: var(--color-muted);
+  font-weight: 800;
+}
+
+.statusList dd {
+  margin: 0;
+  color: var(--color-text);
+  font-weight: 900;
+}
+
+.monobankButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 8px;
+  background: #111827;
+  color: #ffffff;
+  font-weight: 900;
+  padding: 0 16px;
+}
+
+.monobankButton:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.paymentExample {
+  margin: 0;
+}
+
+.paymentExample img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.paymentExample figcaption {
+  margin-top: 8px;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.error {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 14px;
+  border: 1px solid var(--color-danger);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  color: var(--color-danger);
+  padding: 12px 14px;
+  font-weight: 800;
+}
+
+.error p {
+  margin: 0;
+}
+
+.error button {
+  justify-self: start;
+  border: 1px solid var(--color-danger);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-danger);
+  cursor: pointer;
+  font-weight: 900;
+  padding: 7px 10px;
+}
+
+.participationSkeleton {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.eyebrowSkeleton {
+  width: 132px;
+  height: 0.9rem;
+}
+
+.headingSkeleton {
+  width: min(320px, 86%);
+  height: 1.5rem;
+}
+
+.copySkeleton {
+  width: min(560px, 100%);
+  height: 1rem;
+}
+
+.optionSkeleton {
+  min-height: 88px;
+}
+
+.buttonSkeleton {
+  grid-column: 1 / -1;
+  min-height: 44px;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 18px;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+  }
+
+  .participationSkeleton {
+    grid-template-columns: 1fr;
+  }
+
+  .option {
+    min-height: auto;
+  }
+
+  .statusBox div {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .joinedHeader,
+  .statusList div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}

@@ -1,0 +1,251 @@
+.item {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  min-height: 76px;
+  padding: 16px 20px;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.row:hover {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.homeTeam,
+.awayTeam {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.awayTeam {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.logoRight {
+  order: 2;
+}
+
+.teamNameFull,
+.teamNameCode {
+  min-width: 0;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.teamNameCode {
+  display: none;
+}
+
+.center {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  min-width: 0;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.date,
+.time,
+.finished,
+.score {
+  white-space: nowrap;
+}
+
+.predictionBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-height: 22px;
+  padding: 3px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-muted);
+  font-size: 0.7rem;
+  font-weight: 900;
+  line-height: 1.15;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.predictionBadgeSuccess {
+  border-color: var(--color-success);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.predictionBadgeSuccess::before {
+  margin-right: 5px;
+  content: "✓";
+}
+
+.predictionBadgeAction {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+}
+
+.predictionBadgeMuted {
+  border-color: var(--color-border);
+  background: color-mix(in srgb, var(--color-muted) 8%, transparent);
+  color: var(--color-muted);
+}
+
+.predictionBadgeClosed {
+  border-color: var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  color: var(--color-danger);
+}
+
+.time,
+.score {
+  color: var(--color-text);
+  font-size: 1.02rem;
+  font-weight: 900;
+}
+
+.liveBadge {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-live) 14%, transparent);
+  color: var(--color-live);
+  font-size: 0.72rem;
+  letter-spacing: 0;
+}
+
+.liveScore {
+  color: var(--color-live);
+  font-size: 1rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.details {
+  display: grid;
+  gap: 12px;
+  padding: 14px 18px 16px;
+  border-top: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-bg) 65%, var(--color-surface));
+}
+
+.details h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.details dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 18px;
+  margin: 0;
+}
+
+.details div {
+  display: grid;
+  gap: 4px;
+}
+
+.details dt {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.details dd {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) minmax(96px, 110px) minmax(0, 1fr);
+    gap: 8px;
+    min-height: 78px;
+    padding: 12px 10px;
+  }
+
+  .homeTeam,
+  .awayTeam {
+    gap: 7px;
+  }
+
+  .teamNameFull,
+  .teamNameCode {
+    font-size: 0.9rem;
+  }
+
+  .teamNameFull {
+    display: none;
+  }
+
+  .teamNameCode {
+    display: inline;
+  }
+
+  .logo {
+    width: 24px;
+    height: 24px;
+    font-size: 0.6rem;
+  }
+
+  .predictionBadge {
+    max-width: 100%;
+    padding: 3px 6px;
+    font-size: 0.64rem;
+    white-space: normal;
+  }
+
+  .details dl {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,209 @@
+.authPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 96px);
+  width: 100%;
+  padding: 32px 16px;
+}
+
+.authCard {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 440px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  padding: 28px;
+}
+
+.authCard::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  content: "";
+}
+
+.cardHeader {
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge {
+  border: 1px solid color-mix(in srgb, var(--color-accent) 42%, var(--color-border));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-text);
+  padding: 5px 9px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.authCard h1 {
+  margin: 12px 0 0;
+  color: var(--color-text);
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  color: var(--color-muted);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.successIcon,
+.errorIcon,
+.loadingIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.successIcon {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.errorIcon {
+  background: color-mix(in srgb, var(--color-danger) 12%, transparent);
+  color: var(--color-danger);
+}
+
+.loadingIcon {
+  border: 3px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+  border-top-color: var(--color-primary);
+  animation: spin 900ms linear infinite;
+}
+
+.loadingIcon:has(span) {
+  border: 0;
+  animation: none;
+  color: var(--color-primary);
+}
+
+.loadingCard {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  min-height: 220px;
+  align-content: center;
+}
+
+.loadingTitleSkeleton {
+  width: min(260px, 86%);
+  height: 2rem;
+}
+
+.loadingTextSkeleton {
+  width: min(320px, 92%);
+  height: 1rem;
+}
+
+.loadingNoticeSkeleton {
+  width: min(340px, 100%);
+  height: 46px;
+}
+
+.notice,
+.success,
+.error {
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.notice {
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+
+.success {
+  border: 1px solid var(--color-success);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.error {
+  border: 1px solid var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  color: var(--color-danger);
+}
+
+.linkButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 46px;
+  margin-top: 18px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  font-weight: 900;
+  transition: background-color 160ms ease;
+}
+
+.linkButton:hover {
+  background: var(--color-primary-hover);
+  color: var(--color-surface);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .authPage {
+    min-height: calc(100vh - 132px);
+    padding: 20px 12px;
+  }
+
+  .authCard {
+    padding: 20px;
+  }
+
+  .topline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .authCard h1 {
+    font-size: 1.55rem;
+  }
+}

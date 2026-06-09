@@ -1,0 +1,21 @@
+.shell {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  width: min(1280px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 48px;
+}
+
+.main {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+@media (max-width: 768px) {
+  .shell {
+    width: min(100% - 24px, 1280px);
+    gap: 0;
+    padding-top: 16px;
+  }
+}

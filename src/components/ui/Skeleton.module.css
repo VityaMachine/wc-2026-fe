@@ -1,0 +1,30 @@
+.skeleton {
+  display: block;
+  min-height: 1rem;
+  border-radius: 6px;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-border) 55%, transparent) 0%,
+      color-mix(in srgb, var(--color-muted) 22%, transparent) 48%,
+      color-mix(in srgb, var(--color-border) 55%, transparent) 100%
+    );
+  background-size: 220% 100%;
+  animation: skeleton-shimmer 1.25s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  from {
+    background-position: 120% 0;
+  }
+
+  to {
+    background-position: -120% 0;
+  }
+}
