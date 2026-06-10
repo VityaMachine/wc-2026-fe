@@ -1,0 +1,155 @@
+.page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 0 0;
+}
+
+.card,
+.notice {
+  width: min(520px, 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
+}
+
+.card {
+  display: grid;
+  gap: 16px;
+}
+
+.notice {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+}
+
+.notice h1,
+.notice p {
+  margin: 0;
+}
+
+.notice p {
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+}
+
+.header h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+.header p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.eyebrow {
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  outline: none;
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 0 12px;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+.submit,
+.linkButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  cursor: pointer;
+  padding: 0 16px;
+  font-weight: 900;
+}
+
+.submit {
+  width: 100%;
+}
+
+.submit:hover:not(:disabled),
+.linkButton:hover {
+  background: var(--color-primary-hover);
+  color: var(--color-surface);
+}
+
+.submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
+.success,
+.error {
+  margin: 0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+
+.success {
+  border: 1px solid var(--color-success);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.error {
+  border: 1px solid var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  color: var(--color-danger);
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding-top: 28px;
+  }
+
+  .card,
+  .notice {
+    padding: 18px;
+  }
+
+  .header h1 {
+    font-size: 1.55rem;
+  }
+}

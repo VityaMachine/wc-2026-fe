@@ -101,3 +101,27 @@ export async function apiPostAuth<TResponse, TBody>(path: string, body: TBody, t
 
   return (await response.json()) as TResponse;
 }
+
+export async function apiPatchAuth<TResponse, TBody>(path: string, body: TBody, token: string): Promise<TResponse> {
+  const url = getUrl(path);
+  const response = await fetch(url, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new ApiError(await getErrorMessage(response), response.status);
+  }
+
+  if (response.status === 204) {
+    return undefined as TResponse;
+  }
+
+  const text = await response.text();
+  return (text ? JSON.parse(text) : undefined) as TResponse;
+}

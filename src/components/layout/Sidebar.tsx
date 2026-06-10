@@ -20,13 +20,15 @@ const navItems = [
 
 export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const pathname = usePathname();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { t } = useLocale();
+  const isAdmin = user?.role === "ADMIN";
   const visibleNavItems = isAuthenticated
     ? [
         ...navItems,
         { href: "/leaderboard", labelKey: "navLeaderboard" } as const,
         { href: "/my-predictions", labelKey: "navMyPredictions" } as const,
+        ...(isAdmin ? [{ href: "/admin", label: "Admin" } as const] : []),
       ]
     : navItems;
 
@@ -69,7 +71,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 href={item.href}
                 onClick={onClose}
               >
-                {t(item.labelKey)}
+                {"label" in item ? item.label : t(item.labelKey)}
               </Link>
             );
           })}
