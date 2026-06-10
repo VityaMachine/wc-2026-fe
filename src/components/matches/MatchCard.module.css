@@ -187,7 +187,7 @@
   margin: 0;
 }
 
-.details div {
+.details dl > div {
   display: grid;
   gap: 4px;
 }
@@ -206,7 +206,45 @@
   overflow-wrap: anywhere;
 }
 
-@media (max-width: 640px) {
+.predictionActions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.predictionActions > :not(.participantsButton) {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.participantsButton {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.participantsButton:hover {
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+@media (max-width: 768px) {
+  .predictionActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .participantsButton {
+    width: 100%;
+  }
+
   .row {
     grid-template-columns: minmax(0, 1fr) minmax(96px, 110px) minmax(0, 1fr);
     gap: 8px;
@@ -247,5 +285,31 @@
 
   .details dl {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) minmax(86px, 96px) minmax(0, 1fr);
+    padding: 12px 8px;
+  }
+
+  .teamNameFull,
+  .teamNameCode {
+    font-size: 0.84rem;
+  }
+
+  .center {
+    font-size: 0.76rem;
+  }
+
+  .time,
+  .score,
+  .liveScore {
+    font-size: 0.92rem;
+  }
+
+  .details {
+    padding: 12px;
   }
 }

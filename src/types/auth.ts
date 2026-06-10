@@ -22,6 +22,15 @@ export type RegisterPayload = {
   lastName: string;
 };
 
+export type ForgotPasswordPayload = {
+  email: string;
+};
+
+export type ResetPasswordPayload = {
+  token: string;
+  password: string;
+};
+
 export type AuthResponse = {
   accessToken: string;
   user: AuthUser;

@@ -4,9 +4,23 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
+import { STORAGE_KEYS } from "@/lib/storage-keys";
 import { useAuth } from "@/providers/AuthProvider";
 import { useLocale } from "@/providers/LocaleProvider";
+import { getTournamentParticipation } from "@/services/participation.service";
+import type { ParticipationStatus } from "@/types/participation";
 import styles from "./LoginForm.module.css";
+
+const TOURNAMENT_SLUG = "world-cup-2026";
+
+function hasJoinedTournament(participation: ParticipationStatus) {
+  return (
+    participation.joined === true ||
+    participation.isJoined === true ||
+    Boolean(participation.participationType) ||
+    Boolean(participation.type)
+  );
+}
 
 export function LoginForm() {
   const router = useRouter();
@@ -30,7 +44,19 @@ export function LoginForm() {
 
     try {
       await loginUser({ email, password });
-      router.push("/matches");
+      const token = window.localStorage.getItem(STORAGE_KEYS.authToken);
+
+      if (!token) {
+        router.push("/");
+        return;
+      }
+
+      try {
+        const participation = await getTournamentParticipation(TOURNAMENT_SLUG, token);
+        router.push(hasJoinedTournament(participation) ? "/matches" : "/");
+      } catch {
+        router.push("/");
+      }
     } catch (loginError) {
       setError(loginError instanceof Error ? loginError.message : t("authError"));
     } finally {
@@ -78,6 +104,10 @@ export function LoginForm() {
           {isSubmitting ? <LoadingSpinner size="sm" /> : null}
           <span>{t("login")}</span>
         </button>
+
+        <Link className={styles.forgotPassword} href="/forgot-password">
+          {t("forgotPasswordLink")}
+        </Link>
 
         <p className={styles.switchText}>
           {t("dontHaveAccount")} <Link href="/register">{t("register")}</Link>

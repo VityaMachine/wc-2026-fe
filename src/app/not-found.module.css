@@ -160,7 +160,7 @@
   outline-offset: 3px;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 480px) {
   .page {
     min-height: calc(100vh - 132px);
     padding: 24px 12px;

@@ -1,6 +1,7 @@
 export type ParticipantType = "FREE" | "PAID";
 
 export type ParticipationStatus = {
+  joined?: boolean;
   isJoined?: boolean;
   participationType?: ParticipantType | null;
   type?: ParticipantType | null;

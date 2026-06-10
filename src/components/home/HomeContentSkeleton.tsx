@@ -12,24 +12,15 @@ export function HomeContentSkeleton() {
 
       <TournamentParticipationCardSkeleton />
 
-      <section className={styles.section}>
-        <Skeleton className={styles.sectionTitleSkeleton} />
-        <ul className={styles.tournamentList}>
-          {Array.from({ length: 2 }).map((_, index) => (
-            <li className={styles.tournamentItem} key={index}>
-              <Skeleton className={styles.tournamentTitleSkeleton} />
-              <dl>
-                {Array.from({ length: 3 }).map((__, detailIndex) => (
-                  <div key={detailIndex}>
-                    <Skeleton className={styles.tournamentLabelSkeleton} />
-                    <Skeleton className={styles.tournamentValueSkeleton} />
-                  </div>
-                ))}
-              </dl>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <div className={styles.infoSections}>
+        {Array.from({ length: 4 }).map((_, index) => (
+          <section className={styles.infoCard} key={index}>
+            <Skeleton className={styles.sectionTitleSkeleton} />
+            <Skeleton className={styles.infoLineSkeleton} />
+            <Skeleton className={styles.infoLineShortSkeleton} />
+          </section>
+        ))}
+      </div>
     </section>
   );
 }

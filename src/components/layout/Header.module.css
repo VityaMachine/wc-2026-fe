@@ -39,10 +39,26 @@
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  /* gap: 2px; */
   color: var(--color-text);
   font-size: 1rem;
   font-weight: 900;
   white-space: nowrap;
+  /* justify-content: center; */
+}
+
+.logoImage {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  object-fit: contain;
+
+  /* outline: 1px solid red; */
+
+  position: relative;
+  top: 1px;
 }
 
 .actions {
@@ -50,6 +66,7 @@
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
+  min-width: 0;
 }
 
 .controls {
@@ -58,15 +75,45 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 10px;
+  min-width: 0;
 }
 
 .control {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
   color: var(--color-muted);
   font-size: 0.85rem;
   font-weight: 700;
+}
+
+.telegramLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.telegramLink:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.telegramLink svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  fill: currentColor;
 }
 
 .control select {
@@ -81,6 +128,7 @@
 
 .authLink {
   min-height: 36px;
+  min-width: 0;
   padding: 9px 12px;
   border: 1px solid var(--color-border);
   border-radius: 6px;
@@ -143,5 +191,69 @@
 
   .controls {
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    width: calc(100% - 16px);
+    padding: 10px 0;
+  }
+
+  .logo {
+    font-size: 0.95rem;
+  }
+
+  .logoImage {
+    width: 32px;
+    height: 32px;
+  }
+
+  .actions,
+  .controls,
+  .userActions {
+    width: 100%;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .control {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    min-width: 0;
+    gap: 6px;
+  }
+
+  .control select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .telegramLink {
+    width: 40px;
+    min-width: 40px;
+    padding: 8px;
+  }
+
+  .telegramLink span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .authLink {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .username {
+    max-width: min(180px, 100%);
   }
 }

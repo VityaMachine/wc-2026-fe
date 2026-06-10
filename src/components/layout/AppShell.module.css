@@ -19,3 +19,11 @@
     padding-top: 16px;
   }
 }
+
+@media (max-width: 480px) {
+  .shell {
+    width: calc(100% - 16px);
+    padding-top: 12px;
+    padding-bottom: 32px;
+  }
+}

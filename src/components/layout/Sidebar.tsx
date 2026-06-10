@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { useAuth } from "@/providers/AuthProvider";
 import { useLocale } from "@/providers/LocaleProvider";
 import styles from "./Sidebar.module.css";
 
@@ -19,7 +20,15 @@ const navItems = [
 
 export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const pathname = usePathname();
+  const { isAuthenticated } = useAuth();
   const { t } = useLocale();
+  const visibleNavItems = isAuthenticated
+    ? [
+        ...navItems,
+        { href: "/leaderboard", labelKey: "navLeaderboard" } as const,
+        { href: "/my-predictions", labelKey: "navMyPredictions" } as const,
+      ]
+    : navItems;
 
   useEffect(() => {
     if (!isOpen || !onClose) {
@@ -50,7 +59,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
           </button>
         </div>
         <nav className={styles.nav} aria-label={t("menu")}>
-          {navItems.map((item) => {
+          {visibleNavItems.map((item) => {
             const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 
             return (

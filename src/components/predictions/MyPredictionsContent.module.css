@@ -1,0 +1,482 @@
+.page {
+  display: grid;
+  gap: 24px;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 40px 0 0;
+}
+
+.header {
+  display: grid;
+  gap: 12px;
+}
+
+.header h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+}
+
+.header p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+}
+
+.statsPanel {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 34%, var(--color-border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-primary) 7%, var(--color-surface));
+  box-shadow: var(--shadow-card);
+}
+
+.statsPanel h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.statsGrid div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding: 9px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+.statsGrid dt {
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.statsGrid dd {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.1rem;
+  font-weight: 950;
+}
+
+.filterScroller {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.filterTabs {
+  display: inline-flex;
+  gap: 8px;
+  max-width: 100%;
+  padding: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.filterButton {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.filterButton:hover {
+  color: var(--color-primary);
+}
+
+.filterButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.filterButtonActive {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.filterButtonActive:hover {
+  color: var(--color-surface);
+}
+
+.card,
+.stateCard,
+.errorBox {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.card {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.matchRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+}
+
+.homeTeam,
+.awayTeam {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  color: var(--color-text);
+  font-weight: 900;
+}
+
+.desktopTeamName,
+.mobileTeamCode {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileTeamCode {
+  display: none;
+}
+
+.awayTeam {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.teamLogo,
+.teamCode {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  border-radius: 999px;
+}
+
+.teamCode {
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-muted) 8%, transparent);
+  color: var(--color-muted);
+  font-size: 0.62rem;
+  font-weight: 900;
+}
+
+.vs {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.center {
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  min-width: 0;
+  text-align: center;
+}
+
+.matchScore {
+  color: var(--color-text);
+  font-size: 1.35rem;
+  font-weight: 950;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.statusBadge {
+  justify-self: center;
+  padding: 4px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.statusLive {
+  border-color: var(--color-live);
+  background: color-mix(in srgb, var(--color-live) 12%, transparent);
+  color: var(--color-live);
+}
+
+.statusFinished {
+  border-color: var(--color-success);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.summary,
+.meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.summary {
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-bg) 55%, var(--color-surface));
+}
+
+.meta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.summary div,
+.meta div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.summary dt,
+.meta dt {
+  color: var(--color-muted);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.summary dd,
+.meta dd {
+  margin: 0;
+  color: var(--color-text);
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.score,
+.points {
+  color: var(--color-primary);
+  font-size: 1.18rem;
+  font-weight: 950;
+}
+
+.hitBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.hitBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 8px;
+  border: 1px solid color-mix(in srgb, var(--color-success) 46%, var(--color-border));
+  border-radius: 999px;
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.noHitBadge {
+  border-color: color-mix(in srgb, var(--color-danger) 38%, var(--color-border));
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  color: var(--color-danger);
+}
+
+@supports not (background: color-mix(in srgb, black 10%, white)) {
+  .statsPanel {
+    border-color: var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .hitBadge {
+    border-color: var(--color-success);
+  }
+
+  .noHitBadge {
+    border-color: var(--color-danger);
+  }
+}
+
+.stateCard,
+.errorBox {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+  padding: 20px;
+}
+
+.stateCard p,
+.errorBox p {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.errorBox {
+  border-color: var(--color-danger);
+}
+
+.errorBox h2 {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: 1.125rem;
+}
+
+.primaryLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.titleSkeleton {
+  width: 280px;
+  height: clamp(2rem, 4vw, 3.5rem);
+}
+
+.subtitleSkeleton {
+  width: min(560px, 82vw);
+  height: 1.1rem;
+}
+
+.cardTitleSkeleton {
+  width: 240px;
+  height: 1.25rem;
+}
+
+.cardLineSkeleton {
+  height: 42px;
+}
+
+@media (max-width: 768px) {
+  .page {
+    gap: 20px;
+    padding-top: 28px;
+  }
+
+  .card,
+  .stateCard,
+  .errorBox {
+    padding: 14px;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filterScroller {
+    width: 100%;
+    padding-bottom: 2px;
+  }
+
+  .filterTabs {
+    min-width: max-content;
+  }
+
+  .matchRow {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .homeTeam,
+  .awayTeam {
+    gap: 7px;
+  }
+
+  .teamLogo,
+  .teamCode {
+    width: 22px;
+    height: 22px;
+    font-size: 0.6rem;
+  }
+
+  .desktopTeamName {
+    display: none;
+  }
+
+  .mobileTeamCode {
+    display: inline;
+    font-size: 0.9rem;
+  }
+
+  .summary,
+  .meta {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    gap: 18px;
+    padding-top: 28px;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header p {
+    font-size: 0.98rem;
+  }
+
+  .card,
+  .stateCard,
+  .errorBox {
+    padding: 12px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .matchRow {
+    gap: 6px;
+  }
+
+  .mobileTeamCode {
+    font-size: 0.82rem;
+  }
+}

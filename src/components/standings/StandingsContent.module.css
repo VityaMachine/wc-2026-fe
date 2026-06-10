@@ -87,7 +87,20 @@
   height: 1rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
+  .standings {
+    gap: 18px;
+    padding-top: 28px;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header p {
+    font-size: 0.98rem;
+  }
+
   .groupTitleSkeleton {
     margin: 14px 14px 0;
   }

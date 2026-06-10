@@ -1,0 +1,293 @@
+.leaderboard {
+  display: grid;
+  gap: 24px;
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  padding: 40px 0 0;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+}
+
+.header h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+}
+
+.header p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.sections {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+}
+
+.switcher {
+  display: inline-flex;
+  gap: 8px;
+  max-width: 100%;
+  padding: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.switcherButton {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.switcherButton:hover {
+  color: var(--color-primary);
+}
+
+.switcherButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.switcherButtonActive {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.switcherButtonActive:hover {
+  color: var(--color-surface);
+}
+
+.card,
+.ctaCard,
+.errorBox {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.card h2 {
+  margin: 0;
+  padding: 16px 18px;
+  color: var(--color-text);
+  font-size: 1.1rem;
+}
+
+.prizePoolStats {
+  display: grid;
+  gap: 7px;
+  justify-items: end;
+}
+
+.prizePoolStats div {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 210px;
+}
+
+.prizePoolStats span {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.prizePoolStats strong {
+  color: var(--color-text);
+  font-size: 1.02rem;
+  font-weight: 950;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.prizePoolStats .prizePoolLabel {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.prizePoolFallback {
+  max-width: 240px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.ctaCard,
+.errorBox {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+  padding: 20px;
+}
+
+.ctaCard p,
+.errorBox p,
+.warning {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.ctaLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.ctaLink:hover {
+  filter: brightness(0.96);
+}
+
+.errorBox {
+  border-color: var(--color-danger);
+}
+
+.errorBox h2 {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: 1.125rem;
+}
+
+.warning {
+  padding: 0 18px 18px;
+  color: var(--color-muted);
+}
+
+.titleSkeleton {
+  width: 260px;
+  height: clamp(2rem, 4vw, 3.5rem);
+}
+
+.subtitleSkeleton {
+  width: min(560px, 82vw);
+  height: 1.1rem;
+  margin-top: 14px;
+}
+
+.sectionTitleSkeleton {
+  width: 190px;
+  height: 1.2rem;
+  margin: 16px 18px 0;
+}
+
+.skeletonRows {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+
+.rowSkeleton {
+  height: 42px;
+}
+
+.prizePoolStatSkeleton {
+  width: 210px;
+  height: 1.15rem;
+}
+
+@media (max-width: 768px) {
+  .leaderboard {
+    gap: 20px;
+    padding-top: 28px;
+  }
+
+  .card h2 {
+    padding: 14px 14px 2px;
+  }
+
+  .switcher {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .switcherButton {
+    min-width: 0;
+    padding: 0 10px;
+    white-space: normal;
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 14px;
+  }
+
+  .prizePoolStats {
+    justify-items: start;
+  }
+
+  .prizePoolStats div {
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .prizePoolFallback {
+    max-width: none;
+    text-align: left;
+  }
+
+  .ctaCard,
+  .errorBox {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leaderboard {
+    gap: 18px;
+    padding-top: 28px;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header p {
+    font-size: 0.98rem;
+  }
+
+  .switcher {
+    grid-template-columns: 1fr;
+  }
+
+  .prizePoolStats div {
+    align-items: flex-start;
+  }
+
+  .prizePoolStats strong {
+    white-space: normal;
+  }
+}

@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import { PredictionForm } from "@/components/predictions/PredictionForm";
+import { ParticipantsPredictionsModal } from "@/components/participants-predictions/ParticipantsPredictionsModal";
 import { getTeamFlag } from "@/lib/team-flags";
 import { useLocale } from "@/providers/LocaleProvider";
 import type { Team } from "@/types/team";
@@ -134,6 +135,7 @@ function getPredictionBadge({
 
 export function MatchCard({ match, existingPrediction, isAuthenticated, onPredictionCreated }: MatchCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isParticipantsModalOpen, setIsParticipantsModalOpen] = useState(false);
   const { locale, t } = useLocale();
   const dateTime = getMatchDate(match.startTime, LOCALE_BY_APP_LOCALE[locale]);
   const status = match.status?.toUpperCase();
@@ -216,16 +218,32 @@ export function MatchCard({ match, existingPrediction, isAuthenticated, onPredic
               <dd>{dateTime.full}</dd>
             </div>
           </dl>
-          {matchId ? (
-            <PredictionForm
-              matchId={matchId}
-              existingPrediction={existingPrediction}
-              onCreated={onPredictionCreated}
-              isMatchScheduled={status === "SCHEDULED"}
-            />
-          ) : null}
+          <div className={styles.predictionActions}>
+            {matchId ? (
+              <PredictionForm
+                matchId={matchId}
+                existingPrediction={existingPrediction}
+                onCreated={onPredictionCreated}
+                isMatchScheduled={status === "SCHEDULED"}
+              />
+            ) : null}
+            {isAuthenticated && existingPrediction ? (
+              <button
+                className={styles.participantsButton}
+                type="button"
+                onClick={() => setIsParticipantsModalOpen(true)}
+              >
+                {t("showParticipantsPredictions")}
+              </button>
+            ) : null}
+          </div>
         </div>
       ) : null}
+      <ParticipantsPredictionsModal
+        isOpen={isParticipantsModalOpen}
+        match={match}
+        onClose={() => setIsParticipantsModalOpen(false)}
+      />
     </article>
   );
 }

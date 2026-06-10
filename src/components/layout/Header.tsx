@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { TELEGRAM_CHANNEL_URL } from "@/config/links";
 import { useAuth } from "@/providers/AuthProvider";
 import { useLocale } from "@/providers/LocaleProvider";
 import { useTheme } from "@/providers/ThemeProvider";
@@ -40,11 +42,31 @@ export function Header({ isMenuOpen = false, onMenuClick }: HeaderProps) {
             =
           </button>
           <Link className={styles.logo} href="/">
-            {t("appName")}
+            <Image
+              src="/logo.png"
+              alt={t("appName")}
+              width={36}
+              height={36}
+              priority
+              className={styles.logoImage}
+            />
+            <span>{t("appName")}</span>
           </Link>
         </div>
         <div className={styles.actions}>
           <div className={styles.controls}>
+            <a
+              className={styles.telegramLink}
+              href={TELEGRAM_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("telegramChannel")}
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                <path d="M21.8 4.3 18.5 20c-.2 1-.8 1.2-1.6.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-.9.5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2l-11 6.9-4.7-1.5c-1-.3-1-1 .2-1.5L20.4 3.7c.9-.3 1.6.2 1.4.6Z" />
+              </svg>
+              <span>{t("telegram")}</span>
+            </a>
             <label className={styles.control}>
               <span>{t("language")}</span>
               <select value={locale} onChange={(event) => setLocale(event.target.value as Locale)}>

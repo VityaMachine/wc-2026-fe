@@ -148,6 +148,18 @@
   text-align: center;
 }
 
+.forgotPassword {
+  display: block;
+  margin-top: 14px;
+  color: var(--color-primary);
+  font-weight: 900;
+  text-align: center;
+}
+
+.forgotPassword:hover {
+  text-decoration: underline;
+}
+
 .switchText a {
   color: var(--color-primary);
   font-weight: 900;

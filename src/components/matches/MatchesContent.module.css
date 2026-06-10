@@ -142,7 +142,7 @@
   color: var(--color-text);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .header {
     align-items: stretch;
     flex-direction: column;
@@ -254,9 +254,29 @@
   height: 1.05rem;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .countLabelSkeleton,
   .countValueSkeleton {
     justify-self: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .matches {
+    gap: 18px;
+    padding-top: 28px;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header p {
+    font-size: 0.98rem;
+  }
+
+  .count,
+  .filters {
+    padding: 12px;
   }
 }
