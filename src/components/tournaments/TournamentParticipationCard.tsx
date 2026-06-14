@@ -6,8 +6,14 @@ import { useCallback, useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { useAuth } from "@/providers/AuthProvider";
 import { useLocale } from "@/providers/LocaleProvider";
-import { getTournamentParticipation, joinTournament } from "@/services/participation.service";
-import type { ParticipantType, ParticipationStatus } from "@/types/participation";
+import {
+  getTournamentParticipation,
+  joinTournament,
+} from "@/services/participation.service";
+import type {
+  ParticipantType,
+  ParticipationStatus,
+} from "@/types/participation";
 import styles from "./TournamentParticipationCard.module.css";
 
 type TournamentParticipationCardProps = {
@@ -39,29 +45,39 @@ export function TournamentParticipationCardSkeleton() {
 
 const participantTypes: ParticipantType[] = ["FREE", "PAID"];
 
-export function TournamentParticipationCard({ slug }: TournamentParticipationCardProps) {
+export function TournamentParticipationCard({
+  slug,
+}: TournamentParticipationCardProps) {
   const { isAuthenticated, isLoading: isAuthLoading, token } = useAuth();
   const { t } = useLocale();
-  const [participation, setParticipation] = useState<ParticipationStatus | null>(null);
+  const [participation, setParticipation] =
+    useState<ParticipationStatus | null>(null);
   const [selectedType, setSelectedType] = useState<ParticipantType>("FREE");
   const [isLoading, setIsLoading] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
   const [showPaymentExample, setShowPaymentExample] = useState(true);
   const [error, setError] = useState("");
 
-  const loadParticipation = useCallback(async (currentToken: string) => {
-    setIsLoading(true);
-    setError("");
+  const loadParticipation = useCallback(
+    async (currentToken: string) => {
+      setIsLoading(true);
+      setError("");
 
-    try {
-      const status = await getTournamentParticipation(slug, currentToken);
-      setParticipation(status);
-    } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : t("unableToLoadParticipation"));
-    } finally {
-      setIsLoading(false);
-    }
-  }, [slug, t]);
+      try {
+        const status = await getTournamentParticipation(slug, currentToken);
+        setParticipation(status);
+      } catch (loadError) {
+        setError(
+          loadError instanceof Error
+            ? loadError.message
+            : t("unableToLoadParticipation"),
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [slug, t],
+  );
 
   useEffect(() => {
     if (!isAuthenticated || !token) {
@@ -84,26 +100,41 @@ export function TournamentParticipationCard({ slug }: TournamentParticipationCar
     setError("");
 
     try {
-      const status = await joinTournament(slug, { participationType: selectedType }, token);
+      const status = await joinTournament(
+        slug,
+        { participationType: selectedType },
+        token,
+      );
       setParticipation(status);
     } catch (joinError) {
-      setError(joinError instanceof Error ? joinError.message : t("unableToJoinTournament"));
+      setError(
+        joinError instanceof Error
+          ? joinError.message
+          : t("unableToJoinTournament"),
+      );
     } finally {
       setIsJoining(false);
     }
   }
 
-  const currentParticipationType = participation?.participationType ?? participation?.type ?? null;
+  const currentParticipationType =
+    participation?.participationType ?? participation?.type ?? null;
   const isJoined = Boolean(participation?.isJoined || currentParticipationType);
   const isPaid = currentParticipationType === "PAID";
-  const isPaymentConfirmed = participation?.paymentStatus === "PAID" || participation?.prizeEligible === true;
+  const isPaymentConfirmed =
+    participation?.paymentStatus === "PAID" ||
+    participation?.prizeEligible === true;
 
   return (
     <section className={styles.card}>
       <div className={styles.header}>
         <p className={styles.eyebrow}>World Cup 2026</p>
         <h2>{t("joinContestTitle")}</h2>
-        <p>{isAuthenticated ? t("joinContestAuthText") : t("joinContestGuestText")}</p>
+        <p>
+          {isAuthenticated
+            ? t("joinContestAuthText")
+            : t("joinContestGuestText")}
+        </p>
       </div>
 
       {isAuthLoading ? <ParticipationSkeletonBody /> : null}
@@ -135,7 +166,9 @@ export function TournamentParticipationCard({ slug }: TournamentParticipationCar
                 <span className={styles.freeIcon}>✓</span>
                 <div>
                   <h3>{t("paidConfirmedTitle")}</h3>
-                  <span className={`${styles.typeBadge} ${styles.freeBadge}`}>{t("paidTier")}</span>
+                  <span className={`${styles.typeBadge} ${styles.freeBadge}`}>
+                    {t("paidTier")}
+                  </span>
                 </div>
               </div>
               <p>{t("paidConfirmedMessage")}</p>
@@ -162,7 +195,9 @@ export function TournamentParticipationCard({ slug }: TournamentParticipationCar
                 <span className={styles.paidIcon}>!</span>
                 <div>
                   <h3>{t("paidJoinedTitle")}</h3>
-                  <span className={`${styles.typeBadge} ${styles.paidBadge}`}>{t("paidTier")}</span>
+                  <span className={`${styles.typeBadge} ${styles.paidBadge}`}>
+                    {t("paidTier")}
+                  </span>
                 </div>
               </div>
               <p>{t("paidJoinedMessage")}</p>
@@ -210,7 +245,9 @@ export function TournamentParticipationCard({ slug }: TournamentParticipationCar
                 <span className={styles.freeIcon}>✓</span>
                 <div>
                   <h3>{t("freeJoinedTitle")}</h3>
-                  <span className={`${styles.typeBadge} ${styles.freeBadge}`}>{t("freeTier")}</span>
+                  <span className={`${styles.typeBadge} ${styles.freeBadge}`}>
+                    {t("freeTier")}
+                  </span>
                 </div>
               </div>
               <p>{t("freeJoinedMessage")}</p>
@@ -219,23 +256,46 @@ export function TournamentParticipationCard({ slug }: TournamentParticipationCar
 
           {!isLoading && !isJoined ? (
             <div className={styles.joinArea}>
-              <div className={styles.options} role="radiogroup" aria-label={t("participationType")}>
+              <div
+                className={styles.options}
+                role="radiogroup"
+                aria-label={t("participationType")}
+              >
                 {participantTypes.map((type) => (
                   <button
                     key={type}
-                    className={selectedType === type ? `${styles.option} ${styles.selected}` : styles.option}
+                    className={
+                      selectedType === type
+                        ? `${styles.option} ${styles.selected}`
+                        : styles.option
+                    }
                     type="button"
                     role="radio"
                     aria-checked={selectedType === type}
                     onClick={() => setSelectedType(type)}
                   >
-                    <span className={styles.optionTitle}>{type === "FREE" ? t("freeTier") : t("paidTier")}</span>
-                    <span>{type === "FREE" ? t("freeTierDescription") : t("paidTierDescription")}</span>
+                    <span className={styles.optionTitle}>
+                      {type === "FREE" ? t("freeTier") : t("paidTier")}
+                    </span>
+                    <span>
+                      {type === "FREE"
+                        ? t("freeTierDescription")
+                        : t("paidTierDescription")}
+                    </span>
                   </button>
                 ))}
               </div>
-              <button className={styles.primaryButton} type="button" onClick={handleJoin} disabled={isJoining}>
-                {isJoining ? t("joining") : selectedType === "FREE" ? t("joinFree") : t("joinPaid")}
+              <button
+                className={styles.primaryButton}
+                type="button"
+                onClick={handleJoin}
+                disabled={isJoining}
+              >
+                {isJoining
+                  ? t("joining")
+                  : selectedType === "FREE"
+                    ? t("joinFree")
+                    : t("joinPaid")}
               </button>
             </div>
           ) : null}

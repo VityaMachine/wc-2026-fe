@@ -28,7 +28,9 @@ type MatchesContentProps = {
   error?: string;
 };
 
-const STATUS_OPTIONS = ["SCHEDULED", "LIVE", "FINISHED"];
+const DEFAULT_STATUS_FILTER = "not_finished";
+const ALL_STATUS_FILTER = "all";
+const STATUS_OPTIONS = [DEFAULT_STATUS_FILTER, "SCHEDULED", "LIVE", "FINISHED"];
 const STAGE_OPTIONS = ["GROUP", "ROUND_OF_32", "ROUND_OF_16", "QUARTER_FINAL", "SEMI_FINAL", "THIRD_PLACE", "FINAL"];
 const GROUP_OPTIONS = Array.from({ length: 12 }, (_, index) => `Group ${String.fromCharCode(65 + index)}`);
 
@@ -46,7 +48,7 @@ function buildMatchesHref(filters: MatchFilters, overrides: Partial<MatchFilters
   };
   const searchParams = new URLSearchParams();
 
-  if (nextFilters.status) {
+  if (nextFilters.status && nextFilters.status !== DEFAULT_STATUS_FILTER) {
     searchParams.set("status", nextFilters.status);
   }
 
@@ -71,7 +73,11 @@ export function MatchesContent({ matches, meta, filters, error }: MatchesContent
   const router = useRouter();
   const { isAuthenticated, token } = useAuth();
   const { t } = useLocale();
-  const activeFiltersCount = [filters.status, filters.stage, filters.groupName].filter(Boolean).length;
+  const activeFiltersCount = [
+    filters.status && filters.status !== DEFAULT_STATUS_FILTER ? filters.status : "",
+    filters.stage,
+    filters.groupName,
+  ].filter(Boolean).length;
   const filterToggleLabel = activeFiltersCount > 0 ? `${t("filters")} · ${activeFiltersCount}` : t("filters");
   const predictionsByMatchId = useMemo(
     () => {
@@ -176,10 +182,16 @@ export function MatchesContent({ matches, meta, filters, error }: MatchesContent
             <label>
               <span>{t("statusFilter")}</span>
               <select value={filters.status} onChange={(event) => updateFilter("status", event.target.value)}>
-                <option value="">{t("all")}</option>
+                <option value={ALL_STATUS_FILTER}>{t("all")}</option>
                 {STATUS_OPTIONS.map((status) => (
                   <option value={status} key={status}>
-                    {status === "SCHEDULED" ? t("scheduled") : status === "LIVE" ? t("live") : t("finished")}
+                    {status === DEFAULT_STATUS_FILTER
+                      ? t("notFinished")
+                      : status === "SCHEDULED"
+                        ? t("scheduled")
+                        : status === "LIVE"
+                          ? t("live")
+                          : t("finished")}
                   </option>
                 ))}
               </select>
