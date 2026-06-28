@@ -15,6 +15,7 @@ type SidebarProps = {
 const navItems = [
   { href: "/", labelKey: "navHome" },
   { href: "/matches", labelKey: "navMatches" },
+  { href: "/playoffs", labelKey: "navPlayoffs" },
   { href: "/standings", labelKey: "navStandings" },
 ] as const;
 

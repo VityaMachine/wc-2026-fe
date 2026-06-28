@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { PredictionForm } from "@/components/predictions/PredictionForm";
 import { ParticipantsPredictionsModal } from "@/components/participants-predictions/ParticipantsPredictionsModal";
+import { formatMatchStage, getPlayoffStage } from "@/lib/match-stage";
 import { getTeamFlag } from "@/lib/team-flags";
 import { useLocale } from "@/providers/LocaleProvider";
 import type { Team } from "@/types/team";
@@ -36,6 +37,28 @@ function formatMatchScore(match: Match) {
 
 function getTeamGroup(match: Match) {
   return match.homeTeam?.groupName ?? match.awayTeam?.groupName ?? match.groupName ?? "N/A";
+}
+
+function getMatchDisplayInfo({
+  match,
+  locale,
+  t,
+}: {
+  match: Match;
+  locale: ReturnType<typeof useLocale>["locale"];
+  t: ReturnType<typeof useLocale>["t"];
+}) {
+  if (getPlayoffStage(match.stage)) {
+    return {
+      label: t("stage"),
+      value: formatMatchStage(match.stage, locale),
+    };
+  }
+
+  return {
+    label: t("group"),
+    value: getTeamGroup(match),
+  };
 }
 
 function TeamLogo({ team, align }: { team?: Team | null; align: "left" | "right" }) {
@@ -147,7 +170,7 @@ export function MatchCard({ match, existingPrediction, isAuthenticated, onPredic
   const awayTeamName = match.awayTeam?.name ?? t("unknownTeam");
   const homeTeamCode = match.homeTeam?.code || homeTeamName;
   const awayTeamCode = match.awayTeam?.code || awayTeamName;
-  const groupName = getTeamGroup(match);
+  const displayInfo = getMatchDisplayInfo({ match, locale, t });
   const matchId = match.id != null ? String(match.id) : null;
   const predictionBadge = getPredictionBadge({
     existingPrediction,
@@ -202,12 +225,8 @@ export function MatchCard({ match, existingPrediction, isAuthenticated, onPredic
           <h3>{t("matchDetails")}</h3>
           <dl>
             <div>
-              <dt>{t("group")}</dt>
-              <dd>{groupName}</dd>
-            </div>
-            <div>
-              <dt>{t("stage")}</dt>
-              <dd>{match.stage ?? "N/A"}</dd>
+              <dt>{displayInfo.label}</dt>
+              <dd>{displayInfo.value}</dd>
             </div>
             <div>
               <dt>{t("status")}</dt>

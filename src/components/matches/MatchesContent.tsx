@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Pagination } from "@/components/common/Pagination";
 import { Skeleton } from "@/components/ui/Skeleton";
+import { formatMatchStage } from "@/lib/match-stage";
 import { useAuth } from "@/providers/AuthProvider";
 import { useLocale } from "@/providers/LocaleProvider";
 import { getMyPredictions } from "@/services/predictions.service";
@@ -33,13 +34,6 @@ const ALL_STATUS_FILTER = "all";
 const STATUS_OPTIONS = [DEFAULT_STATUS_FILTER, "SCHEDULED", "LIVE", "FINISHED"];
 const STAGE_OPTIONS = ["GROUP", "ROUND_OF_32", "ROUND_OF_16", "QUARTER_FINAL", "SEMI_FINAL", "THIRD_PLACE", "FINAL"];
 const GROUP_OPTIONS = Array.from({ length: 12 }, (_, index) => `Group ${String.fromCharCode(65 + index)}`);
-
-function formatStageLabel(value: string) {
-  return value
-    .split("_")
-    .map((part) => part.charAt(0) + part.slice(1).toLowerCase())
-    .join(" ");
-}
 
 function buildMatchesHref(filters: MatchFilters, overrides: Partial<MatchFilters>) {
   const nextFilters = {
@@ -72,7 +66,7 @@ export function MatchesContent({ matches, meta, filters, error }: MatchesContent
   const [arePredictionsLoading, setArePredictionsLoading] = useState(false);
   const router = useRouter();
   const { isAuthenticated, token } = useAuth();
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const activeFiltersCount = [
     filters.status && filters.status !== DEFAULT_STATUS_FILTER ? filters.status : "",
     filters.stage,
@@ -202,7 +196,7 @@ export function MatchesContent({ matches, meta, filters, error }: MatchesContent
                 <option value="">{t("all")}</option>
                 {STAGE_OPTIONS.map((stage) => (
                   <option value={stage} key={stage}>
-                    {formatStageLabel(stage)}
+                    {formatMatchStage(stage, locale)}
                   </option>
                 ))}
               </select>

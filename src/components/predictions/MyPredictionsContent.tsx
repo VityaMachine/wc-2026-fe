@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Skeleton } from "@/components/ui/Skeleton";
+import { formatMatchStage } from "@/lib/match-stage";
 import { getTeamFlag } from "@/lib/team-flags";
 import { useAuth } from "@/providers/AuthProvider";
 import { useLocale } from "@/providers/LocaleProvider";
@@ -514,7 +515,7 @@ export function MyPredictionsContent() {
                   </div>
                   <div>
                     <dt>{t("stage")}</dt>
-                    <dd>{match?.stage ?? "—"}</dd>
+                    <dd>{formatMatchStage(match?.stage, locale)}</dd>
                   </div>
                 </dl>
               </article>
